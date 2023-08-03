@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Abcam</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bs-theme-overrides.css') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/-Login-form-Page-BS4--Login-form-Page-BS4.css') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Banner-Heading-Image-images.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Growing-Search-Bar-Animated-Text-Input.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Navbar-Right-Links-Dark-icons.css') }}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand bg-secondary">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-bezier">
+                        <path fill-rule="evenodd" d="M0 10.5A1.5 1.5 0 0 1 1.5 9h1A1.5 1.5 0 0 1 4 10.5v1A1.5 1.5 0 0 1 2.5 13h-1A1.5 1.5 0 0 1 0 11.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm10.5.5A1.5 1.5 0 0 1 13.5 9h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM6 4.5A1.5 1.5 0 0 1 7.5 3h1A1.5 1.5 0 0 1 10 4.5v1A1.5 1.5 0 0 1 8.5 7h-1A1.5 1.5 0 0 1 6 5.5v-1zM7.5 4a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"></path>
+                        <path d="M6 4.5H1.866a1 1 0 1 0 0 1h2.668A6.517 6.517 0 0 0 1.814 9H2.5c.123 0 .244.015.358.043a5.517 5.517 0 0 1 3.185-3.185A1.503 1.503 0 0 1 6 5.5v-1zm3.957 1.358A1.5 1.5 0 0 0 10 5.5v-1h4.134a1 1 0 1 1 0 1h-2.668a6.517 6.517 0 0 1 2.72 3.5H13.5c-.123 0-.243.015-.358.043a5.517 5.517 0 0 0-3.185-3.185z"></path>
+                    </svg></span><span>Abcam</span></a><a class="btn btn-primary ms-md-2" role = "button" type="button" onclick="location.href='/logout'">Logout</a></div>
+    </nav>
+    <div class="container d-flex flex-grow-1 flex-shrink-1 justify-content-center align-items-center align-content-center pb-4 pt-5">
+        <form method="POST" class="d-flex d-xl-flex flex-row flex-grow-1 flex-shrink-1 justify-content-center align-items-center align-content-center align-self-center align-items-xl-center">
+            <div class="d-flex flex-grow-1 justify-content-evenly align-items-center align-content-center align-items-center form-row">
+                <div class="col-sm form-group mb-3">
+                    <input class="form-control form-control ps-4 pe-4 rounded-pill" type="text" name="searched" placeholder="Enter keyword e.g. P53, Western blot or abID product code" required>
+                </div>
+                <div class="col-sm-auto text-end form-group mb-3">
+                    <button class="btn btn-primary ps-4 pe-4 rounded-pill" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- <p class="text-center text-secondary">{{searched}}</p> -->
+    <!-- <p class="text-center text-secondary">{{products}}</p> -->
+    {%if multiple == "yes" %}
+        <div class="container py-4 py-xl-5" style="border-radius: var(--bs-border-radius)!important;">
+            <div class="d-flex flex-row flex-grow-1 justify-content-around flex-wrap">
+            {% for product in products %}
+            <div  id="cardEntrada-2" class="p-4 text-center shadow-lg m-5 rounded-5" style="background: var(--bs-primary);width: 280px; position: relative;">
+                <img class="pt-2 w-50" src="{{product.img_path}}" style="border-radius:1.5rem" />
+                
+                <h3 class="text-center pt-2" style="color:var(--bs-body-bg);">{{product.product_name}}</h3>
+                <p class="fw-bold pt-1 p-0 m-0" style="color:var(--bs-body-bg);">{{product.abcam_id}}</p>
+                <br>
+                <p class="fw-light m-0" style="color:var(--bs-body-bg);">{{product.description}}</p>
+                <br>
+                <a href="{{product.abcam_link}}">Learn More&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-arrow-right">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                    </svg></a>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %} 
+    {% if multiple == "no"%}
+        {% for product in products %}
+            <div class="container py-4 py-xl-5" style="border-radius: var(--bs-border-radius)!important;">
+                <div class="bg-warning" style="border-radius: var(--bs-border-radius)!important;">
+                    <div class="row row-cols-1 row-cols-md-2">
+                        <div class="col"><img class="rounded w-100 h-100 fit-cover" src="{{product.img_path}}" style="min-height: 300px;"></div>
+                        <div class="col d-flex flex-column justify-content-center p-4">
+                            <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
+                                <div>
+                                    <h1 style="color:var(--bs-body-bg);">{{product.product_name}}</h1>
+                                    <h5 style="color:var(--bs-body-bg);"> # {{product.abcam_id}}</h5>
+                                </div>
+                            </div>
+                            <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
+                                <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon md"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-info-lg">
+                                        <path d="m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704l1.323-6.208Zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0Z"></path>
+                                    </svg></div>
+                                <div>
+                                    <h4>About</h4>
+                                    <p style="color:var(--bs-body-bg);">{{product.description}}</p>
+                                    <a href={{product.abcam_link}}>Learn More&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-arrow-right">
+                                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                                        </svg></a>
+                                </div>
+                            </div>
+                            <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start">
+                                <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon md"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-shop">
+                                        <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z"></path>
+                                    </svg></div>
+                                <div>
+                                    <h4>Available at</h4>
+                                    <p style="color:var(--bs-body-bg);">Abcam.com</p>
+                                    <a href="{{product.abcam_link}}">Shop&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-arrow-right">
+                                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                                        </svg></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %} 
+    {% if multiple == "none" %}
+        <section class="py-4 py-xl-5">
+            <div class="container">
+                <div class="bg-primary border rounded border-0 border-dark overflow-hidden">
+                    <div class="row g-0">
+                        <div class="col-md-6">
+                            <div class="text-white p-4 p-md-5">
+                                <h2 class="fw-bold text-white mb-3">No products found</h2>
+                                <p class="mb-4">This product may not exist or may not have been added to the database. Please try again later or try another search term</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+    <section class="py-4 py-xl-5">
+        <div class="container">
+            <div class="bg-secondary border rounded border-0 border-dark overflow-hidden">
+                <div class="row g-0">
+                    <div class="col-md-6">
+                        <div class="text-white p-4 p-md-5">
+                            <h2 class="fw-bold text-white mb-3">An Abcam Work Experience Project</h2>
+                            <p class="mb-4">Over the course of a week, four students produced this full-stack, database-searching website, which enables researchers to view existing product information with ease.</p>
+                            <div class="my-3"><a class="btn btn-primary btn-lg me-2" role="button" href="https://github.com/Nasebyone/abcam">View Source</a><a class="btn btn-light btn-lg" role="button" href="https://www.abcam.com/">View Inspiration</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 order-first order-md-last" style="min-height: 250px;"><img class="w-100 h-100 fit-cover" src="https://www.abcam.com/ps/homecontainers/PWS site_imagery_08.jpg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    
+    <script src="{{ url_for('static', filename='js/bs-init.js') }}"></script>
+</body>
+
+</html>
