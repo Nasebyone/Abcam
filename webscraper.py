@@ -72,6 +72,6 @@ while count <= 95447: #maximum number of products to scoure
 
 print(product_list)
 import csv
-with open('file3.csv', 'w', newline='') as f:
+with open('Scraped_data.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     writer.writerows(product_list)
